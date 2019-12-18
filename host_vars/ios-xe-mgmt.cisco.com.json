@@ -1,0 +1,50 @@
+{
+    "body1": {
+         "ietf-interfaces:interface": {
+                "name": "Loopback4",
+                "description": "This interface configured via restconf",
+                "type": "iana-if-type:softwareLoopback",
+                "enabled": true,
+                "ietf-ip:ipv4": {
+                  "address": [
+                    {
+                      "ip": "100.100.100.1",
+                      "netmask": "255.255.255.255"
+                    }
+                   ]
+                 }                                            
+               }
+     },
+    "body2":  {
+          "ietf-interfaces:interface": {
+                  "name": "Loopback5",
+                  "description": "This interface configured via restconf",
+                  "type": "iana-if-type:softwareLoopback",
+                  "enabled": true,
+                  "ietf-ip:ipv4": {
+                    "address": [
+                      {
+                        "ip": "100.100.100.2",
+                        "netmask": "255.255.255.255"
+                      }
+                     ]
+                   }
+                 }
+      },
+    "body3":  {
+            "ietf-interfaces:interface": {
+                  "name": "Loopback6",
+                  "description": "This interface configured via restconf",
+                  "type": "iana-if-type:softwareLoopback",
+                  "enabled": true,
+                  "ietf-ip:ipv4": {
+                    "address": [
+                      {
+                        "ip": "100.100.100.3",
+                        "netmask": "255.255.255.255"
+                      } 
+                     ]
+                   } 
+                 } 
+      }
+}

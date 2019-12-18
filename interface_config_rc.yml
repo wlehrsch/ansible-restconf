@@ -1,0 +1,70 @@
+---
+- name: "PLAY 1: Infrastructure-as-code using RESTCONF"
+  hosts: routers
+  connection: local
+  tasks:
+    - name: "TASK 1: Update Interface Loopback4 config with HTTP PUT"
+      uri:
+        url: "{{ url }}/data/ietf-interfaces:interfaces/interface=Loopback4"
+        user: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        method: PUT
+        headers:
+          Content-Type: 'application/yang-data+json'
+          Accept: >-
+            application/yang-data+json,
+            application/yang-data.errors+json
+        body_format: json
+        body: "{{ body1 }}"
+        validate_certs: false
+        status_code:
+          - 200  # OK
+          - 201  # Created
+          - 204  # NO CONTENT
+    - name: "TASK 2: Update Interface Loopback5 config with HTTP PUT"
+      uri:
+        url: "{{ url }}/data/ietf-interfaces:interfaces/interface=Loopback5"
+        user: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        method: PUT
+        headers:
+          Content-Type: 'application/yang-data+json'
+          Accept: >-
+            application/yang-data+json,
+            application/yang-data.errors+json
+        body_format: json
+        body: "{{ body2 }}"
+        validate_certs: false
+        status_code:
+          - 200  # OK
+          - 201  # Created
+          - 204  # NO CONTENT
+    - name: "TASK 3: Update Interface Loopback6 config with HTTP PUT"
+      uri:
+        url: "{{ url }}/data/ietf-interfaces:interfaces/interface=Loopback6"
+        user: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        method: PUT         
+        headers:
+          Content-Type: 'application/yang-data+json'
+          Accept: >-
+            application/yang-data+json,
+            application/yang-data.errors+json
+        body_format: json
+        body: "{{ body3 }}"
+        validate_certs: false
+        status_code:
+          - 200  # OK
+          - 201  # Created           
+          - 204  # NO CONTENT
+    - name: "TASK 4: Save configuration"
+      uri:
+        url: "{{ url }}/operations/cisco-ia:save-config"
+        user: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        method: POST
+        headers:
+          Content-Type: "application/yang-data+json"
+          Accept:  "application/yang-data+json"
+        validate_certs: false
+...

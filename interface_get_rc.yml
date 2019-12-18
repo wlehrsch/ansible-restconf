@@ -1,0 +1,28 @@
+---
+- name: "PLAY 1: Infrastructure-as-code using RESTCONF"
+  hosts: routers
+  connection: local
+  tasks:
+    - name: "TASK 1: Get Interface config with RESTCONF"
+      uri:
+        url: "{{ url }}/data/ietf-interfaces:interfaces"
+        user: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        method: GET
+        return_content: true
+        headers:
+          Accept: "application/yang-data+json"
+        validate_certs: false
+      register: rc_interface
+
+    - name: "TASK 2: Ensure outputs/ folder exists"
+      file:
+        path: "outputs"
+        state: directory
+      run_once: true
+
+    - name: "TASK 3: Write JSON to disk"
+      copy:
+        content: "{{ rc_interface.json | to_nice_json }}"
+        dest: "outputs/{{ inventory_hostname }}_restconf.json"
+...

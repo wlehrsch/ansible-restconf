@@ -1,0 +1,7 @@
+---
+ansible_user: root
+ansible_ssh_pass: D_Vay!_10&
+url: "https://{{ ansible_host }}:9443/restconf"
+ansible_python_interpreter: /usr/local/bin/python3
+...
+
